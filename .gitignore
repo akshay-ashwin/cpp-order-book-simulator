@@ -1,0 +1,23 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executable
+orderbook
+
+# Build artifacts
+*.exe
+*.out
+*.app
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+

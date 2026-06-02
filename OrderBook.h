@@ -7,12 +7,15 @@
 #include <unordered_map>
 #include <vector>
 #include <memory>
+#include <cmath>
+
+static constexpr double PRICE_EPSILON = 1e-9;
 
 using OrderPtr = std::shared_ptr<Order>;
 
 struct CompareBids {
     bool operator()(const OrderPtr& a, const OrderPtr& b) const {
-        if (a->price != b->price) {
+        if (std::fabs(a->price - b->price) > PRICE_EPSILON) {
             return a->price < b->price;  // Max-heap: higher price has priority
         }
         return a->timestamp > b->timestamp;  // Older timestamp (smaller value) has priority
@@ -21,7 +24,7 @@ struct CompareBids {
 
 struct CompareAsks {
     bool operator()(const OrderPtr& a, const OrderPtr& b) const {
-        if (a->price != b->price) {
+        if (std::fabs(a->price - b->price) > PRICE_EPSILON) {
             return a->price > b->price;  // Min-heap: lower price has priority
         }
         return a->timestamp > b->timestamp;  // Older timestamp (smaller value) has priority
@@ -45,5 +48,3 @@ public:
 };
 
 #endif // ORDERBOOK_H
-
-

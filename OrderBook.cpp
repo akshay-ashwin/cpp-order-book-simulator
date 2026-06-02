@@ -78,10 +78,11 @@ void OrderBook::cancel_order(int order_id) {
     auto it = order_map.find(order_id);
     if (it != order_map.end() && it->second->is_active) {
         it->second->is_active = false;
+        order_map.erase(it);  // also remove from map — current code leaks this entry
         std::cout << "Order " << order_id << " canceled." << std::endl;
-        match_orders();  // Clean up heap after cancellation
     } else {
-        std::cout << "Error: Order " << order_id << " not found or already inactive." << std::endl;
+        std::cout << "Error: Order " << order_id
+                  << " not found or already inactive." << std::endl;
     }
 }
 
@@ -147,4 +148,3 @@ void OrderBook::print_trades() const {
     }
     std::cout << std::endl;
 }
-

@@ -44,11 +44,13 @@ void OrderBook::match_orders() {
         if (best_bid->remaining_quantity == 0) {
             best_bid->is_active = false;
             bids.pop();
+            order_map.erase(best_bid->order_id);  // Fix 2: erase from map
         }
         
         if (best_ask->remaining_quantity == 0) {
             best_ask->is_active = false;
             asks.pop();
+            order_map.erase(best_ask->order_id);  // Fix 2: erase from map
         }
     }
 }
@@ -78,7 +80,7 @@ void OrderBook::cancel_order(int order_id) {
     auto it = order_map.find(order_id);
     if (it != order_map.end() && it->second->is_active) {
         it->second->is_active = false;
-        order_map.erase(it);  // also remove from map — current code leaks this entry
+        order_map.erase(it);  // Fix 1: remove from map
         std::cout << "Order " << order_id << " canceled." << std::endl;
     } else {
         std::cout << "Error: Order " << order_id

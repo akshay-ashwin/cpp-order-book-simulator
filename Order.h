@@ -10,6 +10,9 @@ enum class OrderType {
 };
 
 class Order {
+// Fields are intentionally public for performance — this is a single-translation-unit
+// simulation, not a library. In a production system these would be private with
+// accessors and mutation controlled through the OrderBook's matching engine only.
 public:
     static std::atomic<int> next_order_id;
     
@@ -25,5 +28,3 @@ public:
 };
 
 #endif // ORDER_H
-
-

@@ -3,6 +3,7 @@
 
 #include <atomic>
 #include <chrono>
+#include <cstdint>
 
 enum class OrderType {
     BUY,
@@ -21,7 +22,7 @@ public:
     double price;
     int quantity;
     int remaining_quantity;
-    long timestamp;
+    int64_t timestamp;
     bool is_active;
     
     Order(OrderType type, double price, int quantity);

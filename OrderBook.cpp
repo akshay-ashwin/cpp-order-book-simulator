@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <sstream>
+#include <cstdint>
 
 void OrderBook::match_orders() {
     while (!bids.empty() && !asks.empty() && bids.top()->price >= asks.top()->price) {
@@ -29,7 +30,7 @@ void OrderBook::match_orders() {
                              ? best_bid->price 
                              : best_ask->price;
         
-        long trade_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
+        int64_t trade_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
             std::chrono::system_clock::now().time_since_epoch()).count();
         
         Trade trade(best_bid->order_id, best_ask->order_id, trade_price, trade_quantity, trade_timestamp);
@@ -44,13 +45,13 @@ void OrderBook::match_orders() {
         if (best_bid->remaining_quantity == 0) {
             best_bid->is_active = false;
             bids.pop();
-            order_map.erase(best_bid->order_id);  // Fix 2: erase from map
+            order_map.erase(best_bid->order_id);
         }
         
         if (best_ask->remaining_quantity == 0) {
             best_ask->is_active = false;
             asks.pop();
-            order_map.erase(best_ask->order_id);  // Fix 2: erase from map
+            order_map.erase(best_ask->order_id);
         }
     }
 }
@@ -80,7 +81,7 @@ void OrderBook::cancel_order(int order_id) {
     auto it = order_map.find(order_id);
     if (it != order_map.end() && it->second->is_active) {
         it->second->is_active = false;
-        order_map.erase(it);  // Fix 1: remove from map
+        order_map.erase(it);
         std::cout << "Order " << order_id << " canceled." << std::endl;
     } else {
         std::cout << "Error: Order " << order_id

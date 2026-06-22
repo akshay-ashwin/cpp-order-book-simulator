@@ -151,3 +151,10 @@ void OrderBook::print_trades() const {
     }
     std::cout << std::endl;
 }
+size_t OrderBook::trade_count() const {
+    return trade_history.size();
+}
+
+const std::vector<Trade>& OrderBook::get_trade_history() const {
+    return trade_history;
+}

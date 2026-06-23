@@ -61,7 +61,7 @@ TEST(OrderBookTest, TimePriority)
     OrderBook book;
 
     int first_buy  = book.add_order(OrderType::BUY, 100.0, 10);
-    int second_buy = book.add_order(OrderType::BUY, 100.0, 10);
+    book.add_order(OrderType::BUY, 100.0, 10);
 
     book.add_order(OrderType::SELL, 100.0, 10);
 

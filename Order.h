@@ -10,6 +10,11 @@ enum class OrderType {
     SELL
 };
 
+enum class OrderExecutionType {
+    LIMIT,
+    MARKET
+};
+
 class Order {
 // Fields are intentionally public for performance — this is a single-translation-unit
 // simulation, not a library. In a production system these would be private with
@@ -19,13 +24,18 @@ public:
     
     int order_id;
     OrderType type;
+    OrderExecutionType execution_type;
     double price;
     int quantity;
     int remaining_quantity;
     int64_t timestamp;
     bool is_active;
     
-    Order(OrderType type, double price, int quantity);
+    Order(OrderType type, 
+        double price, 
+        int quantity,
+        OrderExecutionType execution_type = OrderExecutionType::LIMIT
+    );
 };
 
 #endif // ORDER_H

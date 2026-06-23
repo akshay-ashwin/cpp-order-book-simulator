@@ -3,15 +3,20 @@
 
 std::atomic<int> Order::next_order_id(1);
 
-Order::Order(OrderType type, double price, int quantity)
+Order::Order(
+    OrderType type,
+    double price,
+    int quantity,
+    OrderExecutionType execution_type
+)
     : order_id(next_order_id.fetch_add(1)),
       type(type),
+      execution_type(execution_type),
       price(price),
       quantity(quantity),
       remaining_quantity(quantity),
       timestamp(std::chrono::duration_cast<std::chrono::nanoseconds>(
           std::chrono::system_clock::now().time_since_epoch()).count()),
-      is_active(true) {
+      is_active(true)
+{
 }
-
-

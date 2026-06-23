@@ -56,8 +56,18 @@ void OrderBook::match_orders() {
     }
 }
 
-int OrderBook::add_order(OrderType type, double price, int quantity) {
-    OrderPtr new_order = std::make_shared<Order>(type, price, quantity);
+int OrderBook::add_order(
+    OrderType type, 
+    double price, 
+    int quantity,
+    OrderExecutionType execution_type
+ ) {
+    OrderPtr new_order = std::make_shared<Order>(
+        type,
+        price,
+        quantity,
+        execution_type
+    );
     
     order_map[new_order->order_id] = new_order;
     

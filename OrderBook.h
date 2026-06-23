@@ -42,7 +42,11 @@ private:
     void match_orders();
 
 public:
-    int add_order(OrderType type, double price, int quantity);
+    int add_order(
+        OrderType type, 
+        double price, 
+        int quantity,
+        OrderExecutionType execution_type = OrderExecutionType::LIMIT);
     void cancel_order(int order_id);
     void print_book() const;
     void print_trades() const;

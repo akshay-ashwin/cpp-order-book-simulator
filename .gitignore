@@ -4,6 +4,7 @@
 
 # Executable
 orderbook
+orderbook_tests
 
 # Build artifacts
 *.exe

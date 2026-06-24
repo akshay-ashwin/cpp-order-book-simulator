@@ -73,10 +73,13 @@ public:
     double get_best_bid() const;
     double get_best_ask() const;
     double get_spread() const;
+<<<<<<< HEAD
     double get_mid_price() const;
 
     std::vector<BookLevel> get_bid_depth(int levels) const;
     std::vector<BookLevel> get_ask_depth(int levels) const;
+=======
+>>>>>>> dfd83db (feat: add spread calculation)
 };
 
 #endif // ORDERBOOK_H

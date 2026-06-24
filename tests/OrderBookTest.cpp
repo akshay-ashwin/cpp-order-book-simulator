@@ -242,3 +242,13 @@ TEST(OrderBookTest, BestAskReturnsLowestSellPrice)
 
     EXPECT_DOUBLE_EQ(book.get_best_ask(), 100.0);
 }
+
+TEST(OrderBookTest, SpreadCalculation)
+{
+    OrderBook book;
+
+    book.add_order(OrderType::BUY, 100.0, 10);
+    book.add_order(OrderType::SELL, 101.0, 10);
+
+    EXPECT_DOUBLE_EQ(book.get_spread(), 1.0);
+}

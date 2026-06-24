@@ -317,6 +317,7 @@ double OrderBook::get_spread() const
     double best_ask = get_best_ask();
 
     return best_ask - best_bid;
+
 }
 
 double OrderBook::get_mid_price() const
@@ -385,5 +386,4 @@ std::vector<BookLevel> OrderBook::get_ask_depth(int levels) const
     }
 
     return depth;
-
 }

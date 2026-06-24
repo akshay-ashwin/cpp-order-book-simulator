@@ -220,3 +220,25 @@ TEST(OrderBookTest, FOKFailsWithoutFullLiquidity)
         1UL
     );
 }
+
+TEST(OrderBookTest, BestBidReturnsHighestBuyPrice)
+{
+    OrderBook book;
+
+    book.add_order(OrderType::BUY, 100.0, 10);
+    book.add_order(OrderType::BUY, 105.0, 10);
+    book.add_order(OrderType::BUY, 102.0, 10);
+
+    EXPECT_DOUBLE_EQ(book.get_best_bid(), 105.0);
+}
+
+TEST(OrderBookTest, BestAskReturnsLowestSellPrice)
+{
+    OrderBook book;
+
+    book.add_order(OrderType::SELL, 105.0, 10);
+    book.add_order(OrderType::SELL, 100.0, 10);
+    book.add_order(OrderType::SELL, 102.0, 10);
+
+    EXPECT_DOUBLE_EQ(book.get_best_ask(), 100.0);
+}

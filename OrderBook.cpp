@@ -272,3 +272,41 @@ const std::vector<Trade>& OrderBook::get_trade_history() const {
 size_t OrderBook::active_order_count() const {
     return order_map.size();
 }
+
+double OrderBook::get_best_bid() const
+{
+    auto bids_copy = bids;
+
+    while (!bids_copy.empty())
+    {
+        auto order = bids_copy.top();
+
+        if (order->is_active)
+        {
+            return order->price;
+        }
+
+        bids_copy.pop();
+    }
+
+    return 0.0;
+}
+
+double OrderBook::get_best_ask() const
+{
+    auto asks_copy = asks;
+
+    while (!asks_copy.empty())
+    {
+        auto order = asks_copy.top();
+
+        if (order->is_active)
+        {
+            return order->price;
+        }
+
+        asks_copy.pop();
+    }
+
+    return 0.0;
+}

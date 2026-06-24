@@ -252,3 +252,13 @@ TEST(OrderBookTest, SpreadCalculation)
 
     EXPECT_DOUBLE_EQ(book.get_spread(), 1.0);
 }
+
+TEST(OrderBookTest, MidPriceCalculation)
+{
+    OrderBook book;
+
+    book.add_order(OrderType::BUY, 100.0, 10);
+    book.add_order(OrderType::SELL, 102.0, 10);
+
+    EXPECT_DOUBLE_EQ(book.get_mid_price(), 101.0);
+}

@@ -326,6 +326,7 @@ double OrderBook::get_mid_price() const
     double best_ask = get_best_ask();
 
     return (best_bid + best_ask) / 2.0;
+
 }
 
 std::vector<BookLevel> OrderBook::get_bid_depth(int levels) const

@@ -294,7 +294,7 @@ Second-Year Computer Science Student
 Building at the intersection of finance and systems programming.
 
 - GitHub: [@akshay-ashwin](https://github.com/akshay-ashwin)
-- LinkedIn: [akshay-ashwin](https://linkedin.com/in/akshay-ashwin)
+- LinkedIn: [akshay-ashwin]([https://linkedin.com/in/akshay-ashwin](https://www.linkedin.com/in/akshay-ashwin-83768028a/))
 - Location: Mumbai, India
 
 ---

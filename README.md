@@ -1,5 +1,3 @@
-Here is the complete, polished README in a single copy-pasteable block. Just copy everything inside the box below and paste it directly into your `README.md` file.
-
 ```markdown
 # C++ Real-Time Order Book Simulator
 
